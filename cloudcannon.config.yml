@@ -1,0 +1,189 @@
+# CloudCannon Configuration
+# https://cloudcannon.com/documentation/articles/setting-global-configuration/
+
+source: ""
+
+paths:
+  uploads: /assets/uploads
+
+collections_config: {}
+
+_editables:
+  text:
+    bold: true
+    italic: true
+    link: true
+  block:
+    bold: true
+    italic: true
+    link: true
+    bulletedlist: true
+    numberedlist: true
+  content:
+    bold: true
+    italic: true
+    link: true
+    bulletedlist: true
+    numberedlist: true
+    heading: true
+
+_inputs:
+  hero_badge:
+    type: text
+    label: Location Badge
+  hero_greeting:
+    type: text
+    label: Hero Greeting
+  hero_name:
+    type: text
+    label: Full Name
+  hero_subtitle:
+    type: text
+    label: Role Title
+  hero_description:
+    type: textarea
+    label: Hero Description
+  hero_cta_primary:
+    type: text
+    label: Primary CTA Text
+  hero_cta_secondary:
+    type: text
+    label: Secondary CTA Text
+  stat_1_number:
+    type: text
+    label: Stat 1 Number
+  stat_1_label:
+    type: text
+    label: Stat 1 Label
+  stat_2_number:
+    type: text
+    label: Stat 2 Number
+  stat_2_label:
+    type: text
+    label: Stat 2 Label
+  stat_3_number:
+    type: text
+    label: Stat 3 Number
+  stat_3_label:
+    type: text
+    label: Stat 3 Label
+  about_tag:
+    type: text
+    label: About Section Tag
+  about_title:
+    type: text
+    label: About Section Title
+  about_text:
+    type: markdown
+    label: About Text
+  highlight_1_title:
+    type: text
+    label: Highlight 1 Title
+  highlight_1_desc:
+    type: text
+    label: Highlight 1 Description
+  highlight_2_title:
+    type: text
+    label: Highlight 2 Title
+  highlight_2_desc:
+    type: text
+    label: Highlight 2 Description
+  highlight_3_title:
+    type: text
+    label: Highlight 3 Title
+  highlight_3_desc:
+    type: text
+    label: Highlight 3 Description
+  services_tag:
+    type: text
+    label: Services Section Tag
+  services_title:
+    type: text
+    label: Services Section Title
+  service_1_title:
+    type: text
+    label: Service 1 Title
+  service_1_desc:
+    type: textarea
+    label: Service 1 Description
+  service_2_title:
+    type: text
+    label: Service 2 Title
+  service_2_desc:
+    type: textarea
+    label: Service 2 Description
+  service_3_title:
+    type: text
+    label: Service 3 Title
+  service_3_desc:
+    type: textarea
+    label: Service 3 Description
+  service_4_title:
+    type: text
+    label: Service 4 Title
+  service_4_desc:
+    type: textarea
+    label: Service 4 Description
+  experience_tag:
+    type: text
+    label: Experience Section Tag
+  experience_title:
+    type: text
+    label: Experience Section Title
+  job_1_role:
+    type: text
+    label: Job 1 Role
+  job_1_company:
+    type: text
+    label: Job 1 Company
+  job_1_date:
+    type: text
+    label: Job 1 Date Range
+  job_1_details:
+    type: markdown
+    label: Job 1 Details
+  job_2_role:
+    type: text
+    label: Job 2 Role
+  job_2_company:
+    type: text
+    label: Job 2 Company
+  job_2_date:
+    type: text
+    label: Job 2 Date Range
+  job_2_details:
+    type: markdown
+    label: Job 2 Details
+  skills_tag:
+    type: text
+    label: Skills Section Tag
+  skills_title:
+    type: text
+    label: Skills Section Title
+  skills_group_1_title:
+    type: text
+    label: Technical Skills Title
+  skills_group_2_title:
+    type: text
+    label: Strategy Skills Title
+  contact_tag:
+    type: text
+    label: Contact Section Tag
+  contact_title:
+    type: text
+    label: Contact Section Title
+  contact_email:
+    type: text
+    label: Email Address
+  contact_location:
+    type: text
+    label: Location
+  contact_linkedin:
+    type: text
+    label: LinkedIn Link Text
+  footer_tagline:
+    type: text
+    label: Footer Tagline
+  footer_copy:
+    type: text
+    label: Footer Copyright
