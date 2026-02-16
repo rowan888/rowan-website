@@ -28,7 +28,7 @@ function animateCursor() {
 animateCursor();
 
 // Cursor hover effects
-const hoverTargets = document.querySelectorAll('a, button, .service-card, .highlight-card, .contact__card, .process__step');
+const hoverTargets = document.querySelectorAll('a, button, .service-card, .highlight-card, .contact__card');
 hoverTargets.forEach(el => {
   el.addEventListener('mouseenter', () => {
     cursor.classList.add('cursor--hover');
@@ -75,19 +75,57 @@ window.addEventListener('scroll', () => {
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
 
+const openMobileMenu = () => {
+  navLinks.classList.add('open');
+  navToggle.classList.add('active');
+  navToggle.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+};
+
+const closeMobileMenu = () => {
+  navLinks.classList.remove('open');
+  navToggle.classList.remove('active');
+  navToggle.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+};
+
+navToggle.setAttribute('aria-expanded', 'false');
+
 navToggle.addEventListener('click', () => {
-  const isOpen = navLinks.classList.toggle('open');
-  navToggle.classList.toggle('active', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
+  const isOpen = navLinks.classList.contains('open');
+  if (isOpen) {
+    closeMobileMenu();
+  } else {
+    openMobileMenu();
+  }
 });
 
 // Close mobile menu on link click
 navLinks.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    navToggle.classList.remove('active');
-    document.body.style.overflow = '';
+    closeMobileMenu();
   });
+});
+
+// Close when tapping empty menu overlay area
+navLinks.addEventListener('click', (event) => {
+  if (event.target === navLinks) {
+    closeMobileMenu();
+  }
+});
+
+// Close on escape key
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+    closeMobileMenu();
+  }
+});
+
+// Ensure menu resets when leaving mobile breakpoint
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 680 && navLinks.classList.contains('open')) {
+    closeMobileMenu();
+  }
 });
 
 // ===========================
@@ -95,7 +133,7 @@ navLinks.querySelectorAll('a').forEach(link => {
 // ===========================
 const revealElements = document.querySelectorAll(
   '.section__header, .about__text, .about__highlights, .highlight-card, ' +
-  '.service-card, .process__step, .contact__info, .contact__form'
+  '.service-card, .process-step, .pricing-card, .pricing__note, .contact__info, .contact__form'
 );
 
 revealElements.forEach(el => el.classList.add('reveal'));
@@ -273,20 +311,38 @@ const contactForm = document.getElementById('contactForm');
 
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault();
-  contactForm.reset();
 
   const btn = contactForm.querySelector('button[type="submit"]');
   const originalText = btn.textContent;
-
-  btn.textContent = 'Message Sent';
-  btn.style.background = '#10b981';
+  btn.textContent = 'Sending...';
   btn.disabled = true;
 
-  setTimeout(() => {
-    btn.textContent = originalText;
-    btn.style.background = '';
-    btn.disabled = false;
-  }, 3000);
+  fetch(contactForm.action, {
+    method: 'POST',
+    body: new FormData(contactForm),
+    headers: { 'Accept': 'application/json' }
+  })
+    .then(response => {
+      if (response.ok) {
+        contactForm.reset();
+        btn.textContent = 'Message Sent';
+        btn.style.background = '#10b981';
+      } else {
+        btn.textContent = 'Something went wrong';
+        btn.style.background = '#ef4444';
+      }
+    })
+    .catch(() => {
+      btn.textContent = 'Something went wrong';
+      btn.style.background = '#ef4444';
+    })
+    .finally(() => {
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    });
 });
 
 // ===========================
