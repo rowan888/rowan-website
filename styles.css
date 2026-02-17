@@ -920,7 +920,7 @@ ul {
 .contact__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-xl);
+  gap: var(--space-md);
   align-items: start;
   max-width: 760px;
   margin: 0 auto;
